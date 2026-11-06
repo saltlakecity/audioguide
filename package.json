@@ -1,0 +1,39 @@
+{
+  "name": "voice-presenter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "desktop/main.mjs",
+  "scripts": {
+    "build": "vite build",
+    "start": "pnpm build && electron .",
+    "preview": "vite preview --host 127.0.0.1 --port 3101",
+    "pack": "pnpm build && electron-builder --win dir"
+  },
+  "devDependencies": {
+    "electron": "44.7.0",
+    "electron-builder": "26.15.3",
+    "vite": "8.3.4",
+    "@huggingface/transformers": "4.3.1"
+  },
+  "build": {
+    "appId": "ru.voicepresenter.desktop",
+    "productName": "Voice Presenter",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "desktop/**/*",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "desktop/windows.ps1"
+    ],
+    "win": {
+      "target": "dir",
+      "signAndEditExecutable": false
+    }
+  },
+  "packageManager": "pnpm@10.33.3"
+}
